@@ -125,8 +125,6 @@ public class EmailTemplateFacadeImpl implements EmailTemplateFacade {
     public ResultResponseModel<GetEmailTemplateResponse> get(@Nonnull final GetEmailTemplateRequest request) {
         assertGetEmailTemplateRequest(request);
         final EmailTemplate emailTemplate = emailTemplateService.getByUuid(request.getUuid());
-        //TODO: temporary commented to allow call center agents get admin's email template
-        //assertEmailTemplateBelongsToUsersCompany(companyUuid, emailTemplate);
         EmailTemplateModel model =mapperFacade.map(emailTemplate, EmailTemplateModel.class);
         return new ResultResponseModel<>(new GetEmailTemplateResponse(model));
     }

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -29,7 +29,6 @@ public class EmailTemplateTypeTranslationComponentImpl implements EmailTemplateT
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailTemplateTypeTranslationComponentImpl.class);
 
-
     //region Static Properties
     private static final Map<EmailTemplateType, String> KEY_MAP;
     private static final String UI_LOCATION = "EmailSendTo";
@@ -42,7 +41,7 @@ public class EmailTemplateTypeTranslationComponentImpl implements EmailTemplateT
 
     //region Static
     static {
-        KEY_MAP = new HashMap<>();
+        KEY_MAP = new EnumMap<>(EmailTemplateType.class);
         KEY_MAP.put(EmailTemplateType.INFO_TO_ADDRESS, "InfoToAddress");
         KEY_MAP.put(EmailTemplateType.NOTIFICATION_TO_SALES_USER, "CustomerEmployee");
         KEY_MAP.put(EmailTemplateType.APPOINTMENT_EMAIL_TO_ADDRESS, "AppointmentToAddress");
@@ -73,11 +72,9 @@ public class EmailTemplateTypeTranslationComponentImpl implements EmailTemplateT
         final GetAllTranslationsByUiLocationRequest translationRequest = new GetAllTranslationsByUiLocationRequest();
         translationRequest.setUiLocation(UI_LOCATION);
         final ResultResponseModel<GetAllTranslationsByUiLocationResponse> result = translationsServiceCommunicator.getAllTranslationsByUiLocation(translationRequest);
-        Map<EmailTemplateType, List<String>> translations = new HashMap<>();
-        KEY_MAP.forEach((fieldType, s) -> {
-            translations.put(fieldType,
-                    result.getResponse().getGrid().stream().filter(t -> t.getKey().equals(s)).map(TranslationModel::getMessage).collect(Collectors.toList()));
-        });
+        Map<EmailTemplateType, List<String>> translations = new EnumMap<>(EmailTemplateType.class);
+        KEY_MAP.forEach((fieldType, s) -> translations.put(fieldType,
+                result.getResponse().getGrid().stream().filter(t -> t.getKey().equals(s)).map(TranslationModel::getMessage).collect(Collectors.toList())));
         return translations;
     }
 }

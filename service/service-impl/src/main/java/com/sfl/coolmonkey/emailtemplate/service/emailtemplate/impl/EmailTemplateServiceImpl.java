@@ -159,8 +159,7 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
     @Override
     public EmailTemplate getBySystemEmailTemplateType(@Nonnull final SystemEmailTemplateType systemEmailTemplateType) {
         Assert.notNull(systemEmailTemplateType);
-        final EmailTemplate emailTemplate =
-                emailTemplateRepository.findBySystemEmailTemplateTypeAndRemovedIsNull(systemEmailTemplateType);
+        final EmailTemplate emailTemplate = emailTemplateRepository.findBySystemEmailTemplateTypeAndRemovedIsNull(systemEmailTemplateType);
         if (emailTemplate == null) {
             LOGGER.error("Email template not found for system type - {}", systemEmailTemplateType);
             throw new ServicesRuntimeException("Email template not found for system type - " + systemEmailTemplateType);
