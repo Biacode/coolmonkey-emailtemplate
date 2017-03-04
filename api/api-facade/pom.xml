@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.sfl.coolmonkey.emailtemplate-ms.api</groupId>
+        <artifactId>api</artifactId>
+        <version>0.1.0</version>
+    </parent>
+
+    <artifactId>api-facade</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sfl.coolmonkey.emailtemplate-ms.service</groupId>
+            <artifactId>service-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sfl.coolmonkey.emailtemplate-ms.api</groupId>
+            <artifactId>api-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sfl.coolmonkey.emailtemplate-ms.externalclients</groupId>
+            <artifactId>externalclients-coolfs</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.sfl.coolmonkey.emailtemplate-ms.service</groupId>
+                <artifactId>service-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sfl.coolmonkey.emailtemplate-ms.api</groupId>
+                <artifactId>api-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sfl.coolmonkey.emailtemplate-ms.externalclients</groupId>
+                <artifactId>externalclients-coolfs</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.sfl.coolmonkey.emailtemplate-ms</groupId>
+        <artifactId>emailtemplate-ms</artifactId>
+        <version>0.1.0</version>
+    </parent>
+
+    <groupId>com.sfl.coolmonkey.emailtemplate-ms.api</groupId>
+    <artifactId>api</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
+    </properties>
+
+    <modules>
+        <module>api-rest</module>
+        <module>api-facade</module>
+        <module>api-model</module>
+        <module>api-client</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sfl.coolmonkey.commons.api</groupId>
+            <artifactId>api-model</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax.ws.rs</groupId>
+                <artifactId>javax.ws.rs-api</artifactId>
+                <version>${javax.ws.rs-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sfl.coolmonkey.commons.api</groupId>
+                <artifactId>api-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>coolmonkey-release</id>
+            <url>http://maven.sflpro.com/content/repositories/coolmonkey-release/</url>
+        </repository>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
+
+</project>

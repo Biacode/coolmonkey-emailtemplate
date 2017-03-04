@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>emailtemplate-ms</artifactId>
+        <groupId>com.sfl.coolmonkey.emailtemplate-ms</groupId>
+        <version>0.1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sfl.coolmonkey.emailtemplate-ms.externalclients</groupId>
+    <artifactId>externalclients</artifactId>
+    <packaging>pom</packaging>
+    
+    <modules>
+        <module>externalclients-coolfs</module>
+        <module>externalclients-translations</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>coolmonkey-release</id>
+            <url>http://maven.sflpro.com/content/repositories/coolmonkey-release/</url>
+        </repository>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
+</project>

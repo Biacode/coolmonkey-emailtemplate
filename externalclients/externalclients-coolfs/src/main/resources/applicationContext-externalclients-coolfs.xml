@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="false" default-autowire="byName">
+
+    <bean id="coolfsmsApiPath" class="java.lang.String">
+        <constructor-arg type="java.lang.String" value="#{appProperties['ms.coolfs.url']}"/>
+    </bean>
+
+    <bean id="coolfsmsJerseyClientBuilder"
+          class="com.sfl.coolmonkey.emailtemplate.externalclients.coolfs.client.impl.CoolFsServiceJerseyClientBuilderImpl">
+    </bean>
+
+    <bean id="coolfsmsJerseyClient" factory-bean="coolfsmsJerseyClientBuilder"
+          factory-method="buildCoolFsClient"/>
+
+    <bean id="storageResourceClient"
+          class="com.sfl.coolmonkey.coolfs.api.client.rest.storage.impl.StorageResourceClientImpl">
+        <constructor-arg name="client" ref="coolfsmsJerseyClient"/>
+        <constructor-arg name="apiPath" ref="coolfsmsApiPath"/>
+    </bean>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.sfl.coolmonkey.emailtemplate.externalclients.coolfs.communicator.impl"/>
+</beans>
